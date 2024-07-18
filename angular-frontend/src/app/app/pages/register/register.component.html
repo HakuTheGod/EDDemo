@@ -1,0 +1,27 @@
+<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div>
+      <label for="name">Name:</label>
+      <input id="name" formControlName="name" type="text" />
+    </div>
+    <div>
+      <label for="surname">Surname:</label>
+      <input id="surname" formControlName="surname" type="text" />
+    </div>
+    <div>
+      <label for="gender">Gender:</label>
+      <input id="gender" formControlName="gender" type="text" />
+    </div>
+    <div>
+      <label for="birthDate">Birth Date:</label>
+      <input id="birthDate" formControlName="birthDate" type="text" placeholder="dd/MM/yy" />
+    </div>
+    <div>
+      <label for="workAddress">Work Address:</label>
+      <input id="workAddress" formControlName="workAddress" type="text" />
+    </div>
+    <div>
+      <label for="homeAddress">Home Address:</label>
+      <input id="homeAddress" formControlName="homeAddress" type="text" />
+    </div>
+    <button type="submit">Register</button>
+  </form>

@@ -1,0 +1,29 @@
+<div *ngIf="users && users.length">
+    <h2>User Details</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Surname</th>
+          <th>Gender</th>
+          <th>Birth Date</th>
+          <th>Work Address</th>
+          <th>Home Address</th>
+          <th>Created At</th>
+          <th>Updated At</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users">
+          <td>{{ user.name }}</td>
+          <td>{{ user.surname }}</td>
+          <td>{{ user.gender }}</td>
+          <td>{{ user.birthDate }}</td>
+          <td>{{ user.workAddress }}</td>
+          <td>{{ user.homeAddress }}</td>
+          <td>{{ user.createdAt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+          <td>{{ user.updatedAt | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
