@@ -9,4 +9,6 @@ public interface UsersService {
     User saveUser(User user);
 
     List<User> getAllUsers();
+
+    void deleteUser(Integer userId);
 } 

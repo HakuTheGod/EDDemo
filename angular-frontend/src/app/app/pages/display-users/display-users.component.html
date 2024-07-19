@@ -1,39 +1,39 @@
-<div *ngIf="users">
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of users" (click)="openModal(user)" class="clickable-row">
-        <td>{{ user.name }}</td>
-        <td>{{ user.surname }}</td>
-        <td>
-          <button (click)="deleteUser(user.id, $event)" class="delete-button">
-            <i class="fas fa-trash"></i> <!-- FontAwesome trash can icon -->
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<!-- Table HTML -->
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Surname</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users" class="clickable-row" (click)="openDetails(user)">
+      <td>{{ user.name }}</td>
+      <td>{{ user.surname }}</td>
+      <td class="table-actions">
+        <button class="delete-button" (click)="deleteUser(user.id); $event.stopPropagation()">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
 
-  <!-- Modal for displaying user details -->
-  <div id="userModal" class="modal" [ngClass]="{'show': showModal}">
-    <div class="modal-content">
-      <span class="close-button" (click)="closeModal()">&times;</span>
-      <h2>User Details</h2>
-      <p><strong>Name:</strong> {{ selectedUser?.name }}</p>
-      <p><strong>Surname:</strong> {{ selectedUser?.surname }}</p>
-      <p><strong>Gender:</strong> {{ selectedUser?.gender }}</p>
-      <p><strong>Birth Date:</strong> {{ selectedUser?.birthDate }}</p>
-      <p><strong>Work Address:</strong> {{ getWorkAddress(selectedUser) }}</p>
-      <p><strong>Home Address:</strong> {{ getHomeAddress(selectedUser) }}</p>
-      <button (click)="deleteUser(selectedUser?.id)" class="delete-button">
-        <i class="fas fa-trash"></i> <!-- FontAwesome trash can icon -->
-      </button>
-    </div>
+<!-- Modal HTML -->
+<div class="modal" [ngClass]="{'show': selectedUser}" *ngIf="selectedUser">
+  <div class="modal-content">
+    <span class="close-button" (click)="closeDetails()">&times;</span>
+    <h2>User Details</h2>
+    <p><strong>Name:</strong> {{ selectedUser.name }}</p>
+    <p><strong>Surname:</strong> {{ selectedUser.surname }}</p>
+    <p><strong>Gender:</strong> {{ selectedUser.gender }}</p>
+    <p><strong>Birth Date:</strong> {{ selectedUser.birthDate }}</p>
+    <p><strong>Work Address:</strong> {{ getAddress(selectedUser, 'work') }}</p>
+    <p><strong>Home Address:</strong> {{ getAddress(selectedUser, 'home') }}</p>
+    <!-- Trash can button for deleting user -->
+    <button class="delete-button" (click)="deleteUser(selectedUser.id); $event.stopPropagation()">
+      <i class="fa fa-trash" aria-hidden="true"></i>
+    </button>
   </div>
 </div>

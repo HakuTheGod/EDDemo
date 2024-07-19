@@ -14,8 +14,7 @@ import { ServicesService } from '../../../services.service';
 })
 export class DisplayUsersComponent implements OnInit {
   users: any;
-  selectedUser: any;
-  showModal: boolean = false;
+  selectedUser: any; // To hold the user whose details are currently being viewed
 
   constructor(private services: ServicesService) { }
 
@@ -29,40 +28,27 @@ export class DisplayUsersComponent implements OnInit {
     });
   }
 
-  openModal(user: any): void {
+  openDetails(user: any): void {
     this.selectedUser = user;
-    this.showModal = true;
+    document.body.style.overflow = 'hidden'; // Prevent scrolling behind the modal
   }
 
-  closeModal(): void {
-    this.showModal = false;
+  closeDetails(): void {
     this.selectedUser = null;
+    document.body.style.overflow = 'auto'; // Allow scrolling again
   }
 
-  deleteUser(userId: string, event?: Event): void {
-    if (event) {
-      event.stopPropagation(); // Prevent the row click event from firing
+  deleteUser(userId: number): void {
+    if (confirm('Are you sure you want to delete this user?')) {
+      this.services.deleteUser(userId).subscribe(() => {
+        this.getUsers(); // Reload the user list after deletion
+        this.closeDetails(); // Close the modal if it's open
+      });
     }
-
-    this.services.deleteUser(userId).subscribe(
-      () => {
-        // Refresh the user list after successful deletion
-        this.getUsers();
-
-        // Optionally, you can use window.location.reload() to reload the entire page
-        // window.location.reload();
-      },
-      error => {
-        console.error('Error deleting user:', error);
-      }
-    );
   }
 
-  getWorkAddress(user: any): string {
-    return user?.addresses.find((address: any) => address.type === 'work')?.address || 'N/A';
-  }
-
-  getHomeAddress(user: any): string {
-    return user?.addresses.find((address: any) => address.type === 'home')?.address || 'N/A';
+  getAddress(user: any, type: string): string {
+    const address = user.addresses.find((a: any) => a.type === type);
+    return address ? address.address : 'N/A';
   }
 }

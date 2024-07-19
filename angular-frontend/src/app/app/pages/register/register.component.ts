@@ -57,6 +57,7 @@ export class RegisterComponent {
       this.services.addUser(user).subscribe(
         (response: any) => {
           console.log('User added:', response);
+          this.registerForm.reset(); // Clear the form fields
         },
         (error: any) => {
           console.error('Error adding user:', error);

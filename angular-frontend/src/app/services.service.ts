@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class ServicesService {
   private apiUrl = 'http://localhost:8080/api/users'; // Adjust URL as necessary
   private postUserUrl = 'http://localhost:8080/api/user';
+  private deleteUrl = 'http://localhost:8080/api/user/'
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,6 +21,7 @@ export class ServicesService {
   }
 
   deleteUser(userId: any): Observable<any> {
-    return this.httpClient.delete<any>(this.postUserUrl, userId);
+    var url = this.deleteUrl + userId;
+    return this.httpClient.delete<any>(url, userId);
   }
 }
