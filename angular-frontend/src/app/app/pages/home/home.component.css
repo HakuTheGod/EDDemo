@@ -1,0 +1,33 @@
+/* home.component.css */
+
+/* Center the container holding the buttons */
+.button-container {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically */
+    align-items: center;    /* Center horizontally */
+    justify-content: center; /* Center vertically */
+    height: 100vh; /* Full viewport height */
+    gap: 20px; /* Space between buttons */
+  }
+  
+  /* Style for buttons */
+  button {
+    padding: 15px 30px; /* Larger button size */
+    font-size: 18px; /* Larger text */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    background-color: #007bff; /* Blue background color */
+    color: white; /* White text color */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition for hover effect */
+    display: inline-flex; /* Ensure buttons don’t shrink */
+    align-items: center; /* Center text vertically */
+    justify-content: center; /* Center text horizontally */
+    text-align: center; /* Ensure text is centered in the button */
+    min-width: 200px; /* Ensure buttons have a minimum width */
+  }
+  
+  button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+  }
+  

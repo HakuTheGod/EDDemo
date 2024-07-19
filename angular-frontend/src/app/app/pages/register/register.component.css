@@ -1,27 +1,77 @@
+/* General form styling */
 form {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-  
-  div {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    box-sizing: border-box;
-  }
-  
-  button {
-    padding: 10px 15px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-  }
+  max-width: 600px;
+  margin: auto;
+  padding: 1rem;
+}
+
+/* Styling for each form group */
+form div {
+  margin-bottom: 1rem;
+}
+
+/* Label styling */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+/* Input field and select styling */
+input, select {
+  width: 100%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-sizing: border-box; /* Ensure padding is included in the total width */
+}
+
+/* Container for the date picker and calendar icon */
+.date-picker-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Date picker input styling */
+#birthDate {
+  padding-right: 3rem; /* Space for calendar icon */
+}
+
+/* Calendar icon styling */
+.calendar-icon {
+  cursor: pointer;
+  font-size: 0.8rem; /* Adjusted size for better visibility */
+  position: absolute;
+  right: 0rem; /* Space from the edge of the input field */
+  top: 38%;
+  transform: translateY(-50%); /* Center icon vertically */
+  border: 1px solid #ccc; /* Border to make it look like a button */
+  border-radius: 4px; /* Rounded corners */
+  padding: 5px; /* Padding inside the button */
+  background-color: #fff; /* Background color */
+  color: #007bff; /* Color to match your theme */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Style for submit button */
+button[type="submit"] {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff; /* Blue background color */
+  color: white; /* White text color */
+  cursor: pointer;
+  transition: background-color 0.3s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Submit button hover effect */
+button[type="submit"]:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+}

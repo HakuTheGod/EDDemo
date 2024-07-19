@@ -18,4 +18,8 @@ export class ServicesService {
   addUser(user: any): Observable<any> {
     return this.httpClient.post<any>(this.postUserUrl, user);
   }
+
+  deleteUser(userId: any): Observable<any> {
+    return this.httpClient.delete<any>(this.postUserUrl, userId);
+  }
 }

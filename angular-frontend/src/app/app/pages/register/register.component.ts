@@ -1,19 +1,20 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ServicesService } from '../../../services.service';
 import { Router } from '@angular/router';
+import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     HttpClientModule,
-    BsDatepickerModule
+    BsDatepickerModule,
+    ReactiveFormsModule
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
@@ -62,5 +63,9 @@ export class RegisterComponent {
         }
       );
     }
+  }
+
+  showDatepicker(datepicker: BsDatepickerDirective): void {
+    datepicker.show();
   }
 }

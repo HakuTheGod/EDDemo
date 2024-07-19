@@ -4,29 +4,36 @@
       <tr>
         <th>Name</th>
         <th>Surname</th>
-        <th>Gender</th>
-        <th>Birth Date</th>
-        <th>Work Address</th>
-        <th>Home Address</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users">
+      <tr *ngFor="let user of users" (click)="openModal(user)" class="clickable-row">
         <td>{{ user.name }}</td>
         <td>{{ user.surname }}</td>
-        <td>{{ user.gender }}</td>
-        <td>{{ user.birthDate }}</td>
         <td>
-          <ng-container *ngFor="let address of user.addresses">
-            <span *ngIf="address.type === 'work'">{{ address.address }}</span>
-          </ng-container>
-        </td>
-        <td>
-          <ng-container *ngFor="let address of user.addresses">
-            <span *ngIf="address.type === 'home'">{{ address.address }}</span>
-          </ng-container>
+          <button (click)="deleteUser(user.id, $event)" class="delete-button">
+            <i class="fas fa-trash"></i> <!-- FontAwesome trash can icon -->
+          </button>
         </td>
       </tr>
     </tbody>
   </table>
+
+  <!-- Modal for displaying user details -->
+  <div id="userModal" class="modal" [ngClass]="{'show': showModal}">
+    <div class="modal-content">
+      <span class="close-button" (click)="closeModal()">&times;</span>
+      <h2>User Details</h2>
+      <p><strong>Name:</strong> {{ selectedUser?.name }}</p>
+      <p><strong>Surname:</strong> {{ selectedUser?.surname }}</p>
+      <p><strong>Gender:</strong> {{ selectedUser?.gender }}</p>
+      <p><strong>Birth Date:</strong> {{ selectedUser?.birthDate }}</p>
+      <p><strong>Work Address:</strong> {{ getWorkAddress(selectedUser) }}</p>
+      <p><strong>Home Address:</strong> {{ getHomeAddress(selectedUser) }}</p>
+      <button (click)="deleteUser(selectedUser?.id)" class="delete-button">
+        <i class="fas fa-trash"></i> <!-- FontAwesome trash can icon -->
+      </button>
+    </div>
+  </div>
 </div>
