@@ -2,13 +2,15 @@ package com.example.EDDemo.services;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
 import com.example.EDDemo.entities.User;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.example.EDDemo.repositories.UserRepository;
 
 @Service
 public class UsersServiceImpl implements UsersService {
 
+    @Autowired
     private UserRepository userRepository;
 
     public UsersServiceImpl(UserRepository userRespository){
@@ -18,6 +20,9 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public User saveUser(User user) {
+        if (user.getAddresses() != null) {
+            user.getAddresses().forEach(address -> address.setUser(user));
+        }
         return userRepository.save(user);
     }
     
