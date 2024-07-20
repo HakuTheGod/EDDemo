@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.EDDemo.entities.User;
+import com.example.EDDemo.exceptions.ResourceNotFoundException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.EDDemo.repositories.UserRepository;
@@ -34,13 +36,15 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public void deleteUser(Integer userId){
-        userRepository.deleteById(userId);
+    public void deleteUser(Integer userId) {
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId.toString()));
+        userRepository.delete(user);
     }
 
     @Override
     public User getUserById(Integer userId) {
-        Optional<User> userOptional = userRepository.findById(userId);
-        return userOptional.orElse(null);
+        return userRepository.findById(userId)
+            .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId.toString()));
     }
 }
