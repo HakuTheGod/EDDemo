@@ -1,29 +1,37 @@
-<div *ngIf="user">
-    <h2 class="user-details-title">User Details</h2>
-    <table>
+<!-- user-details.component.html -->
+<div class="container">
+    <div class="header">
+      <button (click)="goHome()" class="home-button">Home</button>
+      <button (click)="goDisplayUsers()" class="users-button">Display Users</button>
+      <h2 class="user-details-title">User Details</h2>
+    </div>
+  
+    <div class="content">
+      <table>
         <tr>
-            <th class="label">Name</th>
-            <td>{{ user.name }}</td>
+          <th class="label">Name</th>
+          <td>{{ user?.name }}</td>
         </tr>
         <tr>
-            <th class="label">Surname</th>
-            <td>{{ user.surname }}</td>
+          <th class="label">Surname</th>
+          <td>{{ user?.surname }}</td>
         </tr>
         <tr>
-            <th class="label">Gender</th>
-            <td>{{ user.gender }}</td>
+          <th class="label">Gender</th>
+          <td>{{ user?.gender }}</td>
         </tr>
         <tr>
-            <th class="label">Birth Date</th>
-            <td>{{ user.birthDate }}</td>
+          <th class="label">Birth Date</th>
+          <td>{{ user?.birthDate }}</td>
         </tr>
         <tr>
-            <th class="label">Work Address</th>
-            <td>{{ getAddress(user, 'work') }}</td>
+          <th class="label">Work Address</th>
+          <td>{{ getAddress(user, 'work') }}</td>
         </tr>
         <tr>
-            <th class="label">Home Address</th>
-            <td>{{ getAddress(user, 'home') }}</td>
+          <th class="label">Home Address</th>
+          <td>{{ getAddress(user, 'home') }}</td>
         </tr>
-    </table>
+      </table>
+    </div>
 </div>

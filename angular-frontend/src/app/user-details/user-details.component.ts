@@ -1,7 +1,8 @@
+// user-details.component.ts
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ServicesService } from '../services.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-details',
@@ -9,12 +10,16 @@ import { ServicesService } from '../services.service';
   styleUrls: ['./user-details.component.css'],
   providers: [ServicesService],
   standalone: true,
-  imports: [CommonModule]  // Add CommonModule here
+  imports: [CommonModule]
 })
 export class UserDetailsComponent implements OnInit {
   user: any;
 
-  constructor(private route: ActivatedRoute, private services: ServicesService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private services: ServicesService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     const userId = this.route.snapshot.paramMap.get('id');
@@ -30,6 +35,14 @@ export class UserDetailsComponent implements OnInit {
   }
 
   getAddress(user: any, type: string): string {
-    return user.addresses.find((a: { type: string; }) => a.type === type)?.address || 'N/A';
+    return user?.addresses.find((a: { type: string; }) => a.type === type)?.address || 'N/A';
+  }
+
+  goHome(): void {
+    this.router.navigate(['/']);
+  }
+
+  goDisplayUsers(): void {
+    this.router.navigate(['/display-users']);
   }
 }

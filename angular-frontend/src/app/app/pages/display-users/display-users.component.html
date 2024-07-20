@@ -1,28 +1,37 @@
-<!-- Table HTML -->
-<table>
-  <thead>
-    <tr>
-      <th class="label">Name</th>
-      <th class="label">Surname</th>
-      <th class="label">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
-      <td>
-        <a [routerLink]="['/user-details', user.id]" target="_blank">{{ user.name }}</a>
-      </td>
-      <td>
-        <a [routerLink]="['/user-details', user.id]" target="_blank">{{ user.surname }}</a>
-      </td>
-      <td class="table-actions">
-        <button class="delete-button" (click)="deleteUser(user.id); $event.stopPropagation()">
-          <i class="fa fa-trash" aria-hidden="true"></i>
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<!-- display-users.component.html -->
+<div class="container">
+  <div class="header">
+    <button (click)="goHome()" class="home-button">Home</button>
+    <h2 class="page-title">Users</h2>
+  </div>
+
+  <!-- Table HTML -->
+  <table>
+    <thead>
+      <tr>
+        <th class="label">Name</th>
+        <th class="label">Surname</th>
+        <th class="label">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <td>
+          <a [routerLink]="['/user-details', user.id]" target="_blank">{{ user.name }}</a>
+        </td>
+        <td>
+          <a [routerLink]="['/user-details', user.id]" target="_blank">{{ user.surname }}</a>
+        </td>
+        <td class="table-actions">
+          <button class="delete-button" (click)="deleteUser(user.id); $event.stopPropagation()">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
 
 <!-- Modal HTML -->
 <!-- <div class="modal" [ngClass]="{'show': selectedUser}" *ngIf="selectedUser">

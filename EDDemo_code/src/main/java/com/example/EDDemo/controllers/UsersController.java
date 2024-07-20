@@ -38,7 +38,7 @@ public class UsersController {
     @ResponseBody
     public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
         userService.deleteUser(id);
-        return ResponseEntity.noContent().build(); // Respond with 204 No Content
+        return ResponseEntity.noContent().build(); 
     }
 
     @RequestMapping(value = "/api/user/{id}", method = RequestMethod.GET)

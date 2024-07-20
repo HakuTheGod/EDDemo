@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ServicesService } from '../../../services.service';
 
@@ -14,9 +14,9 @@ import { ServicesService } from '../../../services.service';
 })
 export class DisplayUsersComponent implements OnInit {
   users: any;
-  selectedUser: any; // To hold the user whose details are currently being viewed
+  selectedUser: any; 
 
-  constructor(private services: ServicesService) { }
+  constructor(private services: ServicesService, private router: Router) { }
 
   ngOnInit(): void {
     this.getUsers();
@@ -30,19 +30,19 @@ export class DisplayUsersComponent implements OnInit {
 
   openDetails(user: any): void {
     this.selectedUser = user;
-    document.body.style.overflow = 'hidden'; // Prevent scrolling behind the modal
+    document.body.style.overflow = 'hidden'; 
   }
 
   closeDetails(): void {
     this.selectedUser = null;
-    document.body.style.overflow = 'auto'; // Allow scrolling again
+    document.body.style.overflow = 'auto'; 
   }
 
   deleteUser(userId: number): void {
     if (confirm('Are you sure you want to delete this user?')) {
       this.services.deleteUser(userId).subscribe(() => {
-        this.getUsers(); // Reload the user list after deletion
-        this.closeDetails(); // Close the modal if it's open
+        this.getUsers(); 
+        this.closeDetails();
       });
     }
   }
@@ -50,5 +50,9 @@ export class DisplayUsersComponent implements OnInit {
   getAddress(user: any, type: string): string {
     const address = user.addresses.find((a: any) => a.type === type);
     return address ? address.address : 'N/A';
+  }
+
+  goHome(): void {
+    this.router.navigate(['/']); 
   }
 }

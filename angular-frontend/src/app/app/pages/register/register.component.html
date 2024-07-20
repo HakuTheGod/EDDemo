@@ -1,3 +1,9 @@
+<div class="container">
+  <div class="header">
+    <button (click)="goHome()" class="home-button">Home</button>
+    <h2 class="page-title">Register</h2>
+  </div>
+
 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div>
     <label for="name">Name:</label>

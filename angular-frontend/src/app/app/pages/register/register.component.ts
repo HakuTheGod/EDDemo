@@ -7,6 +7,7 @@ import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { format } from 'date-fns'; 
 
 @Component({
   selector: 'app-register',
@@ -24,7 +25,8 @@ export class RegisterComponent {
   registerForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig> = {
     containerClass: 'theme-default',
-    dateInputFormat: 'DD/MM/YYYY'
+    dateInputFormat: 'DD/MM/YYYY',
+    showWeekNumbers: false,
   };
   formSubmitted = false;
 
@@ -47,11 +49,14 @@ export class RegisterComponent {
     this.formSubmitted = true;
 
     if (this.registerForm.valid) {
+      const birthDate = this.registerForm.get('birthDate')?.value;
+      const formattedDate = birthDate ? format(new Date(birthDate), 'dd/MM/yy') : ''; 
+
       const user = {
         name: this.registerForm.get('name')?.value,
         surname: this.registerForm.get('surname')?.value,
         gender: this.registerForm.get('gender')?.value,
-        birthDate: this.registerForm.get('birthDate')?.value,
+        birthDate: formattedDate,
         addresses: [
           { address: this.registerForm.get('workAddress')?.value, type: 'work' },
           { address: this.registerForm.get('homeAddress')?.value, type: 'home' }
@@ -61,6 +66,7 @@ export class RegisterComponent {
       this.services.addUser(user).subscribe(
         (response: any) => {
           console.log('User added:', response);
+          this.router.navigate(['/user-details', response.id], { state: { user } });
           this.registerForm.reset();
           this.formSubmitted = false;
         },
@@ -78,5 +84,9 @@ export class RegisterComponent {
   isFieldInvalid(fieldName: string): boolean {
     const control = this.registerForm.get(fieldName);
     return control ? (control.invalid && (control.touched || this.formSubmitted)) : false;
+  }
+
+  goHome(): void {
+    this.router.navigate(['/']); 
   }
 }
