@@ -2,12 +2,12 @@
   <div>
     <label for="name">Name:</label>
     <input id="name" formControlName="name" type="text" style="padding: 5px; border-radius: 5px; 
-            border: 1px solid #ccc; margin-bottom: 10px;"/>
+            border: 1px solid #ccc; margin-bottom: 10px;" />
   </div>
   <div>
     <label for="surname">Surname:</label>
     <input id="surname" formControlName="surname" type="text" style="padding: 5px; border-radius: 5px; 
-            border: 1px solid #ccc; margin-bottom: 10px;"/>
+            border: 1px solid #ccc; margin-bottom: 10px;" />
   </div>
   <div>
     <label for="gender">Gender:</label>
@@ -19,12 +19,13 @@
     </select>
   </div>
   <div>
-  <label for="birthDate">Birth Date:</label>
-  <div class="date-picker-container">
-    <input id="birthDate" type="text" style="padding: 5px; border-radius: 5px; 
-            border: 1px solid #ccc; margin-bottom: 10px;" formControlName="birthDate" autocomplete="off" bsDatepicker [bsConfig]="bsConfig" #dp="bsDatepicker"/>
-    <i class="calendar-icon" (click)="showDatepicker(dp)">📅</i>
-  </div>
+    <label for="birthDate">Birth Date:</label>
+    <div class="date-picker-container">
+      <input id="birthDate" type="text" style="padding: 5px; border-radius: 5px; 
+            border: 1px solid #ccc; margin-bottom: 10px;" formControlName="birthDate" autocomplete="off" bsDatepicker
+        [bsConfig]="bsConfig" #dp="bsDatepicker" />
+      <i class="calendar-icon" (click)="showDatepicker(dp)">📅</i>
+    </div>
   </div>
   <div>
     <label for="workAddress">Work Address:</label>

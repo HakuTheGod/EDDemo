@@ -1,146 +1,181 @@
 /* Reset margin and padding for the body and main container */
-body, html {
+body,
+html {
     margin: 0;
     padding: 0;
-  }
-  
-  /* Styling for the table */
-  table {
+}
+
+/* Styling for the table */
+table {
     width: 100%;
     border-collapse: collapse;
-    margin: 0; /* Ensure no margin around the table */
-    padding: 0; /* Ensure no padding inside the table */
-  }
-  
-  thead {
+    margin: 0;
+    /* Ensure no margin around the table */
+    padding: 0;
+    /* Ensure no padding inside the table */
+}
+
+thead {
     background-color: #f2f2f2;
-  }
-  
-  th, td {
+}
+
+th,
+td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: left;
-  }
-  
-  /* Adjust the width of the label and result columns */
-  th:nth-child(1), td:nth-child(1) {
-    width: 20%; /* Width for the label column */
-  }
-  
-  th:nth-child(2), td:nth-child(2) {
-    width: 80%; /* Width for the result column */
-  }
-  
-  td {
+}
+
+/* Adjust the width of the label and result columns */
+th:nth-child(1),
+td:nth-child(1) {
+    width: 20%;
+    /* Width for the label column */
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+    width: 80%;
+    /* Width for the result column */
+}
+
+td {
     border: 1px solid #ddd;
     padding: 12px;
     text-align: left;
-    vertical-align: middle; /* Center vertically */
-  }
-  
-  tr:nth-child(even) {
+    vertical-align: middle;
+    /* Center vertically */
+}
+
+tr:nth-child(even) {
     background-color: #f9f9f9;
-  }
-  
-  .clickable-row {
-    cursor: pointer; /* Indicate that the row is clickable */
-  }
-  
-  .clickable-row:hover {
-    background-color: #e1e1e1; /* Highlight row on hover */
-  }
-  
-  /* Styling for the delete button in the table */
-  .table-actions {
-    text-align: center; /* Center the icon horizontally */
-  }
-  
-  .table-actions .delete-button {
+}
+
+.clickable-row {
+    cursor: pointer;
+    /* Indicate that the row is clickable */
+}
+
+.clickable-row:hover {
+    background-color: #e1e1e1;
+    /* Highlight row on hover */
+}
+
+/* Styling for the delete button in the table */
+.table-actions {
+    text-align: center;
+    /* Center the icon horizontally */
+}
+
+.table-actions .delete-button {
     border: none;
     background: none;
     cursor: pointer;
-    font-size: 1.5em; /* Adjust as needed */
-    color: red; /* Change as needed */
-  }
-  
-  .table-actions .delete-button i {
-    color: inherit; /* Inherit color from button */
-  }
-  
-  /* Modal styling */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1000; /* Sit on top */
+    font-size: 1.5em;
+    /* Adjust as needed */
+    color: red;
+    /* Change as needed */
+}
+
+.table-actions .delete-button i {
+    color: inherit;
+    /* Inherit color from button */
+}
+
+/* Modal styling */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1000;
+    /* Sit on top */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0, 0, 0, 0.5); /* Black background with opacity */
-  }
-  
-  .modal.show {
-    display: block; /* Show the modal */
-  }
-  
-  .modal-content {
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with opacity */
+}
+
+.modal.show {
+    display: block;
+    /* Show the modal */
+}
+
+.modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* Center the modal */
+    margin: 15% auto;
+    /* Center the modal */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; /* Adjust width as needed */
+    width: 80%;
+    /* Adjust width as needed */
     max-width: 500px;
-    border-radius: 8px; /* Rounded corners */
-    position: relative; /* For positioning the delete button */
-  }
-  
-  .modal-content .delete-button {
-    border: none; /* No border */
-    background: none; /* No background */
-    box-shadow: none; /* No shadow */
+    border-radius: 8px;
+    /* Rounded corners */
+    position: relative;
+    /* For positioning the delete button */
+}
+
+.modal-content .delete-button {
+    border: none;
+    /* No border */
+    background: none;
+    /* No background */
+    box-shadow: none;
+    /* No shadow */
     cursor: pointer;
-    font-size: 1.5em; /* Adjust as needed */
-    color: red; /* Adjust as needed */
+    font-size: 1.5em;
+    /* Adjust as needed */
+    color: red;
+    /* Adjust as needed */
     position: absolute;
-    bottom: 20px; /* Adjust as needed */
+    bottom: 20px;
+    /* Adjust as needed */
     left: 50%;
     transform: translateX(-50%);
-  }
-  
-  /* Ensure the icon inside the modal has no border or shadow */
-  .modal-content .delete-button i {
-    border: none; /* No border */
-    box-shadow: none; /* No shadow */
-  }
-  
-  /* Close button styling */
-  .close-button {
+}
+
+/* Ensure the icon inside the modal has no border or shadow */
+.modal-content .delete-button i {
+    border: none;
+    /* No border */
+    box-shadow: none;
+    /* No shadow */
+}
+
+/* Close button styling */
+.close-button {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
-  }
-  
-  .close-button:hover,
-  .close-button:focus {
+}
+
+.close-button:hover,
+.close-button:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
-  }
-  
-  /* Label styling to match homepage button */
-  .label {
-    background-color: #007bff; /* Example background color */
-    color: #ffffff; /* Example text color */
+}
+
+/* Label styling to match homepage button */
+.label {
+    background-color: #007bff;
+    /* Example background color */
+    color: #ffffff;
+    /* Example text color */
     padding: 0.5rem;
     border-radius: 4px;
-  }
-  
-  /* Styling for the User Details title */
-  .user-details-title {
+}
+
+/* Styling for the User Details title */
+.user-details-title {
     padding: 10px;
     display: inline-block;
-    margin-left: 20px; /* Adjust to move the title to the right */
-  }
-  
+    margin-left: 20px;
+    /* Adjust to move the title to the right */
+}

@@ -1,6 +1,5 @@
 package com.example.EDDemo.controllers;
 
-
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -17,21 +16,21 @@ public class UsersController {
     @Autowired
     public UsersService userService;
 
-    public UsersController(UsersService usersService){
+    public UsersController(UsersService usersService) {
         super();
         this.userService = usersService;
-    } 
+    }
 
     @RequestMapping(value = "/api/user", method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<User> saveUser(@RequestBody User user){
+    public ResponseEntity<User> saveUser(@RequestBody User user) {
         User savedUser = userService.saveUser(user);
         return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
     }
 
     @RequestMapping(value = "/api/users", method = RequestMethod.GET)
     @ResponseBody
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userService.getAllUsers();
     }
 

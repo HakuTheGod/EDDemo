@@ -1,30 +1,29 @@
 <div *ngIf="user">
     <h2 class="user-details-title">User Details</h2>
     <table>
-      <tr>
-        <th class="label">Name</th>
-        <td>{{ user.name }}</td>
-      </tr>
-      <tr>
-        <th class="label">Surname</th>
-        <td>{{ user.surname }}</td>
-      </tr>
-      <tr>
-        <th class="label">Gender</th>
-        <td>{{ user.gender }}</td>
-      </tr>
-      <tr>
-        <th class="label">Birth Date</th>
-        <td>{{ user.birthDate }}</td>
-      </tr>
-      <tr>
-        <th class="label">Work Address</th>
-        <td>{{ getAddress(user, 'work') }}</td>
-      </tr>
-      <tr>
-        <th class="label">Home Address</th>
-        <td>{{ getAddress(user, 'home') }}</td>
-      </tr>
+        <tr>
+            <th class="label">Name</th>
+            <td>{{ user.name }}</td>
+        </tr>
+        <tr>
+            <th class="label">Surname</th>
+            <td>{{ user.surname }}</td>
+        </tr>
+        <tr>
+            <th class="label">Gender</th>
+            <td>{{ user.gender }}</td>
+        </tr>
+        <tr>
+            <th class="label">Birth Date</th>
+            <td>{{ user.birthDate }}</td>
+        </tr>
+        <tr>
+            <th class="label">Work Address</th>
+            <td>{{ getAddress(user, 'work') }}</td>
+        </tr>
+        <tr>
+            <th class="label">Home Address</th>
+            <td>{{ getAddress(user, 'home') }}</td>
+        </tr>
     </table>
-  </div>
-  
+</div>

@@ -18,12 +18,14 @@ label {
 }
 
 /* Input field and select styling */
-input, select {
+input,
+select {
   width: 100%;
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid #ccc;
-  box-sizing: border-box; /* Ensure padding is included in the total width */
+  box-sizing: border-box;
+  /* Ensure padding is included in the total width */
 }
 
 /* Container for the date picker and calendar icon */
@@ -35,22 +37,31 @@ input, select {
 
 /* Date picker input styling */
 #birthDate {
-  padding-right: 3rem; /* Space for calendar icon */
+  padding-right: 3rem;
+  /* Space for calendar icon */
 }
 
 /* Calendar icon styling */
 .calendar-icon {
   cursor: pointer;
-  font-size: 0.8rem; /* Adjusted size for better visibility */
+  font-size: 0.8rem;
+  /* Adjusted size for better visibility */
   position: absolute;
-  right: 0rem; /* Space from the edge of the input field */
+  right: 0rem;
+  /* Space from the edge of the input field */
   top: 38%;
-  transform: translateY(-50%); /* Center icon vertically */
-  border: 1px solid #ccc; /* Border to make it look like a button */
-  border-radius: 4px; /* Rounded corners */
-  padding: 5px; /* Padding inside the button */
-  background-color: #fff; /* Background color */
-  color: #007bff; /* Color to match your theme */
+  transform: translateY(-50%);
+  /* Center icon vertically */
+  border: 1px solid #ccc;
+  /* Border to make it look like a button */
+  border-radius: 4px;
+  /* Rounded corners */
+  padding: 5px;
+  /* Padding inside the button */
+  background-color: #fff;
+  /* Background color */
+  color: #007bff;
+  /* Color to match your theme */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -62,8 +73,10 @@ button[type="submit"] {
   font-size: 1rem;
   border: none;
   border-radius: 5px;
-  background-color: #007bff; /* Blue background color */
-  color: white; /* White text color */
+  background-color: #007bff;
+  /* Blue background color */
+  color: white;
+  /* White text color */
   cursor: pointer;
   transition: background-color 0.3s;
   display: inline-flex;
@@ -73,5 +86,6 @@ button[type="submit"] {
 
 /* Submit button hover effect */
 button[type="submit"]:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
+  /* Darker blue on hover */
 }

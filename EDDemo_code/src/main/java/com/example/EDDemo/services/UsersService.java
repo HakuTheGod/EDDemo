@@ -10,6 +10,6 @@ public interface UsersService {
     List<User> getAllUsers();
 
     void deleteUser(Integer userId);
-    
+
     User getUserById(Integer userId);
 }

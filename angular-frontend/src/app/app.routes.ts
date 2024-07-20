@@ -5,11 +5,13 @@ import { DisplayUsersComponent } from './app/pages/display-users/display-users.c
 import { UserDetailsComponent } from './user-details/user-details.component'; // Add this line
 
 export const routes: Routes = [
-    {path: '',
-    children: [
-        {path: '', component: HomeComponent},
-        {path: 'register', component: RegisterComponent},
-        {path: 'display-users', component: DisplayUsersComponent},
-        {path: 'user-details/:id', component: UserDetailsComponent} // Add this line
-    ]},
+    {
+        path: '',
+        children: [
+            { path: '', component: HomeComponent },
+            { path: 'register', component: RegisterComponent },
+            { path: 'display-users', component: DisplayUsersComponent },
+            { path: 'user-details/:id', component: UserDetailsComponent } // Add this line
+        ]
+    },
 ];

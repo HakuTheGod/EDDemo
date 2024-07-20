@@ -1,7 +1,6 @@
 package com.example.EDDemo.services;
 
 import java.util.List;
-import java.util.Optional;
 
 import com.example.EDDemo.entities.User;
 import com.example.EDDemo.exceptions.ResourceNotFoundException;
@@ -16,7 +15,7 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     private UserRepository userRepository;
 
-    public UsersServiceImpl(UserRepository userRespository){
+    public UsersServiceImpl(UserRepository userRespository) {
         super();
         this.userRepository = userRespository;
     }
@@ -28,23 +27,22 @@ public class UsersServiceImpl implements UsersService {
         }
         return userRepository.save(user);
     }
-    
-    
+
     @Override
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
     public void deleteUser(Integer userId) {
         User user = userRepository.findById(userId)
-            .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId.toString()));
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId.toString()));
         userRepository.delete(user);
     }
 
     @Override
     public User getUserById(Integer userId) {
         return userRepository.findById(userId)
-            .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId.toString()));
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId.toString()));
     }
 }
