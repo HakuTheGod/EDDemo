@@ -8,9 +8,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users" class="clickable-row" (click)="openDetails(user)">
-      <td>{{ user.name }}</td>
-      <td>{{ user.surname }}</td>
+    <tr *ngFor="let user of users">
+      <td>
+        <a [routerLink]="['/user-details', user.id]" target="_blank">{{ user.name }}</a>
+      </td>
+      <td>
+        <a [routerLink]="['/user-details', user.id]" target="_blank">{{ user.surname }}</a>
+      </td>
       <td class="table-actions">
         <button class="delete-button" (click)="deleteUser(user.id); $event.stopPropagation()">
           <i class="fa fa-trash" aria-hidden="true"></i>
@@ -21,7 +25,7 @@
 </table>
 
 <!-- Modal HTML -->
-<div class="modal" [ngClass]="{'show': selectedUser}" *ngIf="selectedUser">
+<!-- <div class="modal" [ngClass]="{'show': selectedUser}" *ngIf="selectedUser">
   <div class="modal-content">
     <span class="close-button" (click)="closeDetails()">&times;</span>
     <h2>User Details</h2>
@@ -31,9 +35,9 @@
     <p><strong>Birth Date:</strong> {{ selectedUser.birthDate }}</p>
     <p><strong>Work Address:</strong> {{ getAddress(selectedUser, 'work') }}</p>
     <p><strong>Home Address:</strong> {{ getAddress(selectedUser, 'home') }}</p>
-    <!-- Trash can button for deleting user -->
+    
     <button class="delete-button" (click)="deleteUser(selectedUser.id); $event.stopPropagation()">
       <i class="fa fa-trash" aria-hidden="true"></i>
     </button>
   </div>
-</div>
+</div> -->

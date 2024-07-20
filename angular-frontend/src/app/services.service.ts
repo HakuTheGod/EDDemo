@@ -24,4 +24,9 @@ export class ServicesService {
     var url = this.deleteUrl + userId;
     return this.httpClient.delete<any>(url, userId);
   }
+
+  getUserById(id: string): Observable<any> {
+    var url = this.deleteUrl + id
+    return this.httpClient.get<any>(url);
+  }
 }

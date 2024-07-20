@@ -1,7 +1,6 @@
 package com.example.EDDemo.services;
 
 import java.util.List;
-
 import com.example.EDDemo.entities.User;
 
 public interface UsersService {
@@ -11,4 +10,6 @@ public interface UsersService {
     List<User> getAllUsers();
 
     void deleteUser(Integer userId);
-} 
+    
+    User getUserById(Integer userId);
+}

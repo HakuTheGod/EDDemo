@@ -41,4 +41,15 @@ public class UsersController {
         userService.deleteUser(id);
         return ResponseEntity.noContent().build(); // Respond with 204 No Content
     }
+
+    @RequestMapping(value = "/api/user/{id}", method = RequestMethod.GET)
+    @ResponseBody
+    public ResponseEntity<User> getUserById(@PathVariable Integer id) {
+        User user = userService.getUserById(id);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }

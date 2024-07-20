@@ -1,6 +1,7 @@
 package com.example.EDDemo.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.example.EDDemo.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,5 +36,11 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public void deleteUser(Integer userId){
         userRepository.deleteById(userId);
+    }
+
+    @Override
+    public User getUserById(Integer userId) {
+        Optional<User> userOptional = userRepository.findById(userId);
+        return userOptional.orElse(null);
     }
 }
