@@ -51,4 +51,17 @@ public class UsersController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    // @RequestMapping(value = "/api/user/{id}", method = RequestMethod.PUT)
+    // @ResponseBody
+    // public ResponseEntity<User> updateUser(
+    //         @RequestBody User user, 
+    //         @PathVariable Integer id) {
+    //     try {
+    //         User updatedUser = userService.updateUser(user, id);
+    //         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
+    //     } catch (RuntimeException e) {
+    //         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    //     }
+    // }
 }

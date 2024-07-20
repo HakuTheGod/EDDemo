@@ -29,4 +29,8 @@ export class ServicesService {
     var url = this.deleteUrl + id
     return this.httpClient.get<any>(url);
   }
+
+  updateUser(user: any): Observable<any> {
+    return this.httpClient.put<any>(this.postUserUrl, user);
+  }
 }

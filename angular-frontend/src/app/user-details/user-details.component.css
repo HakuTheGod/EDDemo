@@ -207,3 +207,77 @@ th {
 .label {
     font-weight: bold;
 }
+
+/* user-details.component.css */
+
+/* Style the edit button */
+.edit-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #007bff; /* Blue color */
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  /* Hover effect for the edit button */
+  .edit-button:hover {
+    color: #0056b3; /* Darker blue on hover */
+  }
+  
+  /* Style the table actions cell */
+  .table-actions {
+    text-align: center;
+  }
+
+/* user-details.component.css */
+
+/* Style the edit input fields */
+.edit-input {
+    width: 100%;
+    padding: 0.25rem; /* Adjust padding for smaller vertical size */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem; /* Ensure font size is consistent */
+}
+
+/* Style the actions container for save and cancel buttons */
+.actions-container {
+    margin-top: 1rem;
+    text-align: right;
+}
+
+/* Style the save and cancel buttons */
+.save-button,
+.cancel-button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 0.5rem;
+}
+
+.save-button {
+    background-color: #28a745; /* Green color for save */
+    color: white;
+}
+
+.cancel-button {
+    background-color: #dc3545; /* Red color for cancel */
+    color: white;
+}
+
+/* Hover effects for the buttons */
+.save-button:hover {
+    background-color: #218838;
+}
+
+.cancel-button:hover {
+    background-color: #c82333;
+}
+
+  
+  

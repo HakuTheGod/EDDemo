@@ -45,4 +45,31 @@ public class UsersServiceImpl implements UsersService {
         return userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId.toString()));
     }
+
+    // @Override
+    // public User updateUser(User user, Integer userId) {
+    //     private String
+    //     if (userRepository.existsById(userId)) {
+    //         user.setId(userId);
+
+    //         User existingUser = userRepository.findById(userId)
+    //     .orElseThrow(() -> new RuntimeException("User not found"));
+
+    //     if (user.getName() != null) {
+    //         existingUser.setName(user.getName());
+    //     }
+    //     if (user.getSurname() != null) {
+    //         existingUser.setSurname(user.getSurname());
+    //     }
+    //     if (user.getGender() != null) {
+    //         existingUser.setGender(user.getGender());
+    //     }
+    //     if (user.getBirthDate() != null) {
+    //         existingUser.setBirthDate(user.getBirthDate());
+    //     }
+    //         return userRepository.save(user);
+    //     } else {
+    //         throw new RuntimeException("User not found with ID: " + userId);
+    //     }
+    // }
 }

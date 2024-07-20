@@ -12,4 +12,6 @@ public interface UsersService {
     void deleteUser(Integer userId);
 
     User getUserById(Integer userId);
+
+    // User updateUser(User user, Integer userId);
 }
