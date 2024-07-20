@@ -7,7 +7,7 @@ The **EDDemo** is a web application built with Angular for the frontend and Spri
 ## Technologies Used
 
 - **Frontend**: Angular, TypeScript, HTML, CSS
-- **Backend**: Spring Boot, Java, JPA, Hibernate
+- **Backend**: Spring Boot, Java, Hibernate
 - **Database**: MYSQL
 - **Libraries**: Angular Forms, Angular Router, etc.
 
