@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ServicesService } from '../../../services.service';
 import { Router } from '@angular/router';
-import { BsDatepickerModule, BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { BsDatepickerConfig, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { BsDatepickerDirective } from 'ngx-bootstrap/datepicker';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -13,8 +14,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     CommonModule,
     HttpClientModule,
-    BsDatepickerModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BsDatepickerModule
   ],
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
@@ -25,6 +26,7 @@ export class RegisterComponent {
     containerClass: 'theme-default',
     dateInputFormat: 'DD/MM/YYYY'
   };
+  formSubmitted = false;
 
   constructor(
     private fb: FormBuilder,
@@ -42,6 +44,8 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
+    this.formSubmitted = true;
+
     if (this.registerForm.valid) {
       const user = {
         name: this.registerForm.get('name')?.value,
@@ -57,7 +61,8 @@ export class RegisterComponent {
       this.services.addUser(user).subscribe(
         (response: any) => {
           console.log('User added:', response);
-          this.registerForm.reset(); // Clear the form fields
+          this.registerForm.reset();
+          this.formSubmitted = false;
         },
         (error: any) => {
           console.error('Error adding user:', error);
@@ -68,5 +73,10 @@ export class RegisterComponent {
 
   showDatepicker(datepicker: BsDatepickerDirective): void {
     datepicker.show();
+  }
+
+  isFieldInvalid(fieldName: string): boolean {
+    const control = this.registerForm.get(fieldName);
+    return control ? (control.invalid && (control.touched || this.formSubmitted)) : false;
   }
 }
