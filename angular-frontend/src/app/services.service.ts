@@ -30,7 +30,7 @@ export class ServicesService {
     return this.httpClient.get<any>(url);
   }
 
-  updateUser(user: any): Observable<any> {
-    return this.httpClient.put<any>(this.postUserUrl, user);
+  updateUser(id: string, changes: any): Observable<any> {
+    return this.httpClient.put(`${this.postUserUrl}/${id}`, changes);
   }
 }

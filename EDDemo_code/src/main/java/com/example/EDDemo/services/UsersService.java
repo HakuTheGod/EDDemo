@@ -9,9 +9,9 @@ public interface UsersService {
 
     List<User> getAllUsers();
 
-    void deleteUser(Integer userId);
+    void deleteUser(Long userId);
 
-    User getUserById(Integer userId);
+    User getUserById(Long userId);
 
-    // User updateUser(User user, Integer userId);
+    User updateUser(User user);
 }

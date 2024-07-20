@@ -1,13 +1,14 @@
 package com.example.EDDemo.services;
 
-import java.util.List;
-
+import com.example.EDDemo.entities.Address;
 import com.example.EDDemo.entities.User;
 import com.example.EDDemo.exceptions.ResourceNotFoundException;
-
+import com.example.EDDemo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.example.EDDemo.repositories.UserRepository;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UsersServiceImpl implements UsersService {
@@ -15,61 +16,63 @@ public class UsersServiceImpl implements UsersService {
     @Autowired
     private UserRepository userRepository;
 
-    public UsersServiceImpl(UserRepository userRespository) {
+    public UsersServiceImpl(UserRepository userRepository) {
         super();
-        this.userRepository = userRespository;
+        this.userRepository = userRepository;
     }
 
     @Override
     public User saveUser(User user) {
-        if (user.getAddresses() != null) {
-            user.getAddresses().forEach(address -> address.setUser(user));
+        try {
+            if (user.getAddresses() != null) {
+                user.getAddresses().forEach(address -> address.setUser(user));
+            }
+            return userRepository.save(user); 
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        return userRepository.save(user);
+        return null;
     }
 
     @Override
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        try {
+            return userRepository.findAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
-    public void deleteUser(Integer userId) {
-        User user = userRepository.findById(userId)
+    public void deleteUser(Long userId) {
+        try {
+            User user = userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId.toString()));
-        userRepository.delete(user);
+            userRepository.delete(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
-    public User getUserById(Integer userId) {
-        return userRepository.findById(userId)
+    public User getUserById(Long userId) {
+        try {
+            return userRepository.findById(userId)
                 .orElseThrow(() -> new ResourceNotFoundException("User", "id", userId.toString()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    // @Override
-    // public User updateUser(User user, Integer userId) {
-    //     private String
-    //     if (userRepository.existsById(userId)) {
-    //         user.setId(userId);
-
-    //         User existingUser = userRepository.findById(userId)
-    //     .orElseThrow(() -> new RuntimeException("User not found"));
-
-    //     if (user.getName() != null) {
-    //         existingUser.setName(user.getName());
-    //     }
-    //     if (user.getSurname() != null) {
-    //         existingUser.setSurname(user.getSurname());
-    //     }
-    //     if (user.getGender() != null) {
-    //         existingUser.setGender(user.getGender());
-    //     }
-    //     if (user.getBirthDate() != null) {
-    //         existingUser.setBirthDate(user.getBirthDate());
-    //     }
-    //         return userRepository.save(user);
-    //     } else {
-    //         throw new RuntimeException("User not found with ID: " + userId);
-    //     }
-    // }
+    @Override
+    public User updateUser(User user){
+        try {
+            return userRepository.save(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

@@ -270,13 +270,42 @@ th {
     color: white;
 }
 
-/* Hover effects for the buttons */
 .save-button:hover {
     background-color: #218838;
 }
 
 .cancel-button:hover {
     background-color: #c82333;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9em;
+    margin-top: 0.25rem;
+}
+
+.edit-button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-size: 1.2em;
+    color: #007bff;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.edit-button:hover {
+    color: #0056b3;
+}
+
+.edit-button.disabled {
+    cursor: not-allowed;
+    color: #ccc;
+}
+
+.edit-button.disabled:hover {
+    color: #ccc;
 }
 
   

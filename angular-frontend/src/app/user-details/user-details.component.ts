@@ -14,10 +14,11 @@ import { FormsModule } from '@angular/forms';
 })
 export class UserDetailsComponent implements OnInit {
   user: any;
-  editableData: any = {}; // For storing editable data
-  originalData: any = {}; // For storing the original data
-  isEditing: any = {}; // Track which field is being edited
-  isEditingAny = false; // Track if any field is being edited
+  editableData: any = {};
+  originalData: any = {};
+  isEditing: any = {};
+  isEditingAny = false;
+  genderError = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -34,9 +35,8 @@ export class UserDetailsComponent implements OnInit {
     if (id) {
       this.services.getUserById(id).subscribe((res: any) => {
         this.user = res;
-        // Initialize editableData and originalData with user details
         this.editableData = { ...this.user };
-        this.originalData = { ...this.user }; // Backup the original data
+        this.originalData = { ...this.user };
       });
     }
   }
@@ -56,32 +56,47 @@ export class UserDetailsComponent implements OnInit {
   editUser(field: string): void {
     this.isEditing = { [field]: true };
     this.isEditingAny = true;
-    // Set the editable data to the field value
     this.editableData[field] = this.user[field] || '';
+    this.genderError = false; // Reset gender error when editing starts
+  }
+
+  validateGender(): void {
+    const validGenders = ['male', 'female', 'other'];
+    this.genderError = !validGenders.includes(this.editableData.gender.toLowerCase());
   }
 
   saveChanges(): void {
-    // Update the user object with the edited data
+    const changes: any = {};
     Object.keys(this.isEditing).forEach((key) => {
-      this.user[key] = this.editableData[key];
-    });
-    
-    this.services.updateUser(this.user).subscribe(
-      () => {
-        console.log('User updated successfully');
-        this.isEditing = {};
-        this.isEditingAny = false;
-      },
-      (error) => {
-        console.error('Error updating user:', error);
+      if (this.editableData[key] !== this.originalData[key]) {
+        changes[key] = this.editableData[key];
       }
-    );
+    });
+
+    if (Object.keys(changes).length > 0) {
+      const userId = this.user?.id;
+      if (userId) {
+        this.services.updateUser(userId, changes).subscribe(
+          () => {
+            this.originalData = { ...this.user, ...changes };
+            this.user = { ...this.user, ...changes };
+            this.editableData = { ...this.user };
+            this.isEditing = {};
+            this.isEditingAny = false;
+          },
+          (error) => {
+            console.error('Error updating user:', error);
+          }
+        );
+      }
+    } else {
+      this.cancelEdit();
+    }
   }
 
   cancelEdit(): void {
-    // Restore original data
     this.user = { ...this.originalData };
-    this.editableData = { ...this.originalData }; // Reset editable data
+    this.editableData = { ...this.originalData };
     this.isEditing = {};
     this.isEditingAny = false;
   }

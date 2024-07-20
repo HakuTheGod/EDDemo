@@ -24,44 +24,83 @@ public class UsersController {
     @RequestMapping(value = "/api/user", method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<User> saveUser(@RequestBody User user) {
-        User savedUser = userService.saveUser(user);
-        return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
+        try {
+            User savedUser = userService.saveUser(user);
+            return new ResponseEntity<User>(savedUser, HttpStatus.CREATED);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping(value = "/api/users", method = RequestMethod.GET)
     @ResponseBody
     public List<User> getAllUsers() {
-        return userService.getAllUsers();
+        try {
+            return userService.getAllUsers();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping(value = "/api/user/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public ResponseEntity<Void> deleteUser(@PathVariable Integer id) {
-        userService.deleteUser(id);
-        return ResponseEntity.noContent().build(); 
+    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+        try {
+            userService.deleteUser(id);
+            return ResponseEntity.ok().build(); 
+        } catch (Exception e) {
+           e.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping(value = "/api/user/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<User> getUserById(@PathVariable Integer id) {
-        User user = userService.getUserById(id);
-        if (user != null) {
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.notFound().build();
+    public ResponseEntity<User> getUserById(@PathVariable Long id) {
+        try {
+            User user = userService.getUserById(id);
+            if (user != null) {
+                return ResponseEntity.ok(user);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return null;
     }
 
-    // @RequestMapping(value = "/api/user/{id}", method = RequestMethod.PUT)
-    // @ResponseBody
-    // public ResponseEntity<User> updateUser(
-    //         @RequestBody User user, 
-    //         @PathVariable Integer id) {
-    //     try {
-    //         User updatedUser = userService.updateUser(user, id);
-    //         return new ResponseEntity<>(updatedUser, HttpStatus.OK);
-    //     } catch (RuntimeException e) {
-    //         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
-    //     }
-    // }
+    @RequestMapping(value = "/api/user/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public ResponseEntity<User> updateUser(@RequestBody User user, @PathVariable Long id) {
+        try {
+            User updateUser = userService.getUserById(id);
+            if(updateUser == null){
+                return ResponseEntity.notFound().build();
+            }
+            updateUser.setId(id);
+            if(user.getName() != null){
+              updateUser.setName(user.getName());  
+            }
+            if(user.getSurname() != null){
+                updateUser.setSurname(user.getSurname());
+            }
+            if(user.getBirthDate() != null){
+                updateUser.setBirthDate(user.getBirthDate());
+            }
+            if(user.getGender() != null){
+                if(!user.getGender().equals("male") && !user.getGender().equals("female") && !user.getGender().equals("other")){
+                    throw new Exception("Invalid Gender");
+                }
+                updateUser.setGender(user.getGender());
+            }
+            userService.updateUser(updateUser);
+            return ResponseEntity.ok(updateUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
